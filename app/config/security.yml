@@ -9,7 +9,7 @@ security:
         ROLE_ADMIN:       ROLE_USER
         ROLE_PLAYER:       ROLE_USER
         ROLE_MANAGER:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN,ROLE_USER]
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:

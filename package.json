@@ -1,0 +1,41 @@
+{
+  "name": "urias",
+  "version": "1.0.0",
+  "description": "File for Front-End work automatisation",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://tgrochowski@bitbucket.org/tgrochowski/mia.git"
+  },
+  "author": "Tomasz Grochowski",
+  "license": "ISC",
+  "homepage": "http://urias.it",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-folders": "^1.1.0",
+    "gulp-hash": "^4.0.1",
+    "gulp-hash-src": "0.1.6",
+    "gulp-image": "^2.7.0",
+    "gulp-purifycss": "^0.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-twig": "^0.7.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.9",
+    "merge-stream": "^1.0.0",
+    "psi": "^2.0.0",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "critical": "^0.8.1"
+  }
+}

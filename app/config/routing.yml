@@ -1,11 +1,10 @@
 user:
-    resource: "@UserBundle/Controller/"
-    type:     annotation
-    prefix:   /
+    resource: "@UserBundle/Resources/config/routing/routing.yml"
+    prefix:   /user
 
 app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+    resource: "@AppBundle/Resources/config/routing/routing.yml"
+    prefix:   /
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

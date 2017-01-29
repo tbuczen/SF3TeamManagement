@@ -14,6 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     @ORM\Index(name="fk_game_team2_idx", columns={"away_team_id"})
  * })
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Game
 {

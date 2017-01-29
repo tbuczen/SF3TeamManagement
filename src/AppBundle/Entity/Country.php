@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Mixins\TimestampTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Country
  *
  * @ORM\Table(name="country")
- * @ORM\Entity
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Country
 {
@@ -19,14 +21,28 @@ class Country
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Country name must be at least {{ limit }} characters long",
+     *      maxMessage = "Country name cannot be longer than {{ limit }} characters"
+     * )
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="code", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 2,
+     *      exactMessage = "Country name must be an exact {{ limit }} characters long",
+     * )
+     * @ORM\Column(name="code", type="string", length=45, nullable=false)
      */
     private $code;
 

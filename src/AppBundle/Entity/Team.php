@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="team", indexes={@ORM\Index(name="fk_team_country_idx", columns={"country_id"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Team
 {
@@ -19,8 +20,16 @@ class Team
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Team name must be at least {{ limit }} characters long",
+     *      maxMessage = "Team name cannot be longer than {{ limit }} characters"
+     * )
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
 

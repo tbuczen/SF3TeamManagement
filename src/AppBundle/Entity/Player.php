@@ -5,21 +5,36 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Mixins\TimestampTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Sluggable\Util as Sluggable;
 
 /**
  * Player
  *
  * @ORM\Table(name="player", indexes={@ORM\Index(name="fk_player_team1_idx", columns={"team_id"})})
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Player
 {
     use TimestampTrait;
 
+    const POSITION_GOALKEEPER = "Goalkeeper";
+    const POSITION_MIDFIELD = "Midfield";
+    const POSITION_ATTACKING = "Attacking";
+    const POSITION_DEFENSIVE = "Defensive";
+
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Country name must be at least {{ limit }} characters long",
+     *      maxMessage = "Country name cannot be longer than {{ limit }} characters"
+     * )
+     * @ORM\Column(name="name", type="string", length=20, nullable=false)
      */
     private $name;
 
@@ -31,16 +46,23 @@ class Player
     private $surname;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="age", type="integer", nullable=true)
+     * @ORM\Column(name="slug", type="string", length=70, nullable=true)
      */
-    private $age;
+    private $slug;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birthday", type="datetime", nullable=true)
+     */
+    private $birthday;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", columnDefinition="ENUM('TAG', 'CATEGORY', 'ASSORTMENT', 'BRAND','SYSTEM','B2B') NOT NULL DEFAULT 'TAG'"))
+     * @ORM\Column(name="position", type="string", columnDefinition="ENUM('Goalkeeper', 'Midfield', 'Attacking', 'Defensive') NOT NULL DEFAULT 'Midfield'"))
      */
     private $position;
 
@@ -96,19 +118,29 @@ class Player
     }
 
     /**
+     * @return \DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
      * @return int
      */
     public function getAge()
     {
-        return $this->age;
+        $now = new \DateTime('now');
+        $age = $this->birthday->diff($now);
+        return $age->format('%y');
     }
 
     /**
-     * @param int $age
+     * @param \DateTime $birthday
      */
-    public function setAge($age)
+    public function setBirthday($birthday)
     {
-        $this->age = $age;
+        $this->birthday = $birthday;
     }
 
     /**
@@ -157,6 +189,22 @@ class Player
     public function setTeam($team)
     {
         $this->team = $team;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
 }
