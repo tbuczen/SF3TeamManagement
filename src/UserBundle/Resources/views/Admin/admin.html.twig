@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block header %}
+    <nav>
+        <a href="{{ path('homepage') }}">Go back to homepage</a>
+        <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+    </nav>
+{% endblock %}
+
+{% block body %}
+You are on the user management site.
+{% endblock %}

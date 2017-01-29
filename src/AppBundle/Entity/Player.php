@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Mixins\TimestampTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Sluggable\Util as Sluggable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Player

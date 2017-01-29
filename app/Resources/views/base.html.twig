@@ -7,11 +7,27 @@
         <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
     </head>
     <body>
-        {% block header %}{% endblock %}
+        <header>
+            {% block header %}{% endblock %}
+        </header>
         <div id="container">
             {% block body %}{% endblock %}
         </div>
         {% block footer %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script>
+            function loadCSS(href) {
+                var rb = window.document.createElement('link'), ref = window.document.getElementsByTagName('head')[0];
+                rb.rel = 'stylesheet';
+                rb.href = href;
+                rb.media = 'only x';
+                ref.appendChild(rb, ref);
+                setTimeout(function () {
+                    rb.media = 'all';
+                }, 0);
+            }
+
+            loadCSS("{{ asset('/bundles/app/css/style.css') }}");
+        </script>
     </body>
 </html>

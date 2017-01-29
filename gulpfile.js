@@ -53,4 +53,4 @@ gulp.task('run-watch', function() {
     }
 });
 
-gulp.task('build', ['run-sass', 'run-sass-plugin', 'run-js', 'run-watch']);
+gulp.task('default', ['run-sass', 'run-js', 'run-watch']);

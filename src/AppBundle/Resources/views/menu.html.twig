@@ -1,0 +1,12 @@
+<nav>
+    <a href="{{ path("homepage") }}">Homepage</a>
+    <a href="{{ path("show_teams") }}">Teams</a>
+    <a href="{{ path("show_players") }}">Players</a>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
+        <a href="{{ path("admin") }}">Users</a>
+        <a href="{{ path("fos_user_security_logout") }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+    {% else %}
+        <a href="{{ path("fos_user_security_login") }}">Login</a>
+    {% endif %}
+</nav>

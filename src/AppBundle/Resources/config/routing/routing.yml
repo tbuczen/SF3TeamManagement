@@ -1,3 +1,17 @@
 homepage:
     path:      /
     defaults:  { _controller: AppBundle:Front:homepage }
+
+
+show_teams:
+    path:      /teams
+    defaults:  { _controller: AppBundle:Front:teams }
+
+display_team:
+    path:      /team/{id}
+    defaults:  { _controller: AppBundle:Front:teams }
+
+
+show_players:
+    path:      /players
+    defaults:  { _controller: AppBundle:Front:players }

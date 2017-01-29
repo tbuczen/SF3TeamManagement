@@ -5,12 +5,13 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\Mixins\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Team
  *
  * @ORM\Table(name="team", indexes={@ORM\Index(name="fk_team_country_idx", columns={"country_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TeamRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Team

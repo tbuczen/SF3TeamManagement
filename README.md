@@ -30,9 +30,28 @@ GRANT ALL PRIVILEGES ON `mia\_%`.* TO 'mia'@'%';
 * Mail: admin@mia.be
 * Password: s3cret
 
+
 5. Frontend assets
 
- In root folder
+* In root folder
 ```shell
 npm install
 ```
+
+* If You don't have gulp installed, install it globally.
+ If You do not want to do that skip this and the next point
+```shell
+npm install gulp -g
+```
+
+* Than run
+```shell
+gulp
+```
+
+* (!) If You skipped global installation just run this: 
+```shell
+./node_modules/gulp/bin/gulp.js
+```
+
+as it is installed with other packages in the project root folder

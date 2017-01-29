@@ -1,0 +1,4 @@
+services:
+    player.search:
+        class: AppBundle\Service\PlayerSearch
+        arguments: [ "@doctrine.orm.entity_manager"]
