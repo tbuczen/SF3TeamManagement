@@ -45,10 +45,36 @@ body {
             padding-left: 3.5px;
           }
         }
+
+        #searchResult{
+
+        }
       }
     }
 
 
+  }
+}
+
+ul.object-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li{
+    padding: 5px 10px 5px 0;
+
+    .remove{
+      padding-left: 15px;
+      color: darkred;
+    }
+
+    .object-display{
+      min-width: 300px;
+      display: inline-block;
+    }
+  }
+  li:nth-child(odd){
+    background-color: #71b6b2;
   }
 }
 
@@ -115,4 +141,8 @@ nav {
 
   }
 
+}
+
+.bold{
+  font-weight: bold;
 }

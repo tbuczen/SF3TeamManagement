@@ -33,7 +33,10 @@ gulp.task('run-sass', folders(pathToFolder, function(folder){
 }));
 
 gulp.task('run-js', folders(pathToFolder, function(folder){
-        var scriptsV = gulp.src([pathToFolder + '/' + folder + '/' + urlGulpPublic + 'js/script.js'])
+        var scriptsV = gulp.src([
+            pathToFolder + '/' + folder + '/' + urlGulpPublic + 'js/plugin/*.js',
+            pathToFolder + '/' + folder + '/' + urlGulpPublic + 'js/script.js'
+            ])
             .pipe(concat('script.js'))
             .pipe(gulp.dest(pathToFolder + '/' + folder + '/' + urlPublic + 'js'))
             .pipe(rename('script.js'))

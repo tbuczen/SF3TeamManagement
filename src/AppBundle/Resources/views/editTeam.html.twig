@@ -1,0 +1,18 @@
+{% extends '@App/base.html.twig' %}
+
+{% block title %}{{ team.country }} {{ team.name }}{% endblock %}
+
+{% block body %}
+    <div class="center">
+
+    {% if team is not null %}
+        <div>
+            <h3>{{ team.name }}</h3>
+            <p>{{ team.country.name }}</p>
+        </div>
+    {% else %}
+        Currently there is no team with that id
+    {% endif %}
+    </div>
+{% endblock %}
+

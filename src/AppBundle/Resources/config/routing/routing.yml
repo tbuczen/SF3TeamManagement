@@ -2,16 +2,78 @@ homepage:
     path:      /
     defaults:  { _controller: AppBundle:Front:homepage }
 
-
+#TEAMS
 show_teams:
     path:      /teams
     defaults:  { _controller: AppBundle:Front:teams }
 
 display_team:
     path:      /team/{id}
-    defaults:  { _controller: AppBundle:Front:teams }
+    defaults:  { _controller: AppBundle:Front:displayTeam }
+    requirements:
+        id: '\d+'
 
+edit_team:
+    path:      /team/{id}/edit
+    defaults:  { _controller: AppBundle:Front:editTeam }
+    requirements:
+        id: '\d+'
 
+delete_team:
+    path:      /team/{id}/delete
+    defaults:  { _controller: AppBundle:Front:deleteTeam }
+    requirements:
+        id: '\d+'
+
+create_team:
+    path:      /team/create
+    defaults:  { _controller: AppBundle:Front:createTeam }
+
+#PLAYERS
 show_players:
     path:      /players
     defaults:  { _controller: AppBundle:Front:players }
+
+display_player:
+    path:      /player/{id}
+    defaults:  { _controller: AppBundle:Front:displayPlayer }
+    requirements:
+        id: '\d+'
+
+edit_player:
+    path:      /player/{id}/edit
+    defaults:  { _controller: AppBundle:Front:editPlayer }
+    requirements:
+        id: '\d+'
+
+delete_player:
+    path:      /player/{id}/delete
+    defaults:  { _controller: AppBundle:Front:deletePlayer }
+    requirements:
+        id: '\d+'
+
+create_player:
+    path:      /player/create
+    defaults:  { _controller: AppBundle:Front:createPlayer }
+
+#COUNTRIES
+manage_countries:
+    path:     /countries
+    defaults:  { _controller: AppBundle:Front:countries }
+
+edit_country:
+    path:     /country/{id}/edit
+    defaults:  { _controller: AppBundle:Front:editCountry }
+    requirements:
+        id: '\d+'
+
+delete_country:
+    path:     /country/{id}/delete
+    defaults:  { _controller: AppBundle:Front:deleteCountry }
+    requirements:
+        id: '\d+'
+
+#SEARCH
+player_search:
+    path:     /player/search
+    defaults:  { _controller: AppBundle:Front:search }

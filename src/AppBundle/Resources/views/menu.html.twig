@@ -5,6 +5,7 @@
 
     {% if is_granted('IS_AUTHENTICATED_FULLY')  %}
         <a href="{{ path("admin") }}">Users</a>
+        <a href="{{ path("manage_countries") }}">Countries</a>
         <a href="{{ path("fos_user_security_logout") }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
     {% else %}
         <a href="{{ path("fos_user_security_login") }}">Login</a>

@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Player
  *
  * @ORM\Table(name="player", indexes={@ORM\Index(name="fk_player_team1_idx", columns={"team_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayerRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Player

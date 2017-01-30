@@ -1,0 +1,29 @@
+{% extends '@App/base.html.twig' %}
+
+{% block title %}{{ team.country }} {{ team.name }}{% endblock %}
+
+{% block body %}
+    <div class="center">
+
+    {% if team is not null %}
+        <div>
+            <h3>{{ team.name }}</h3>
+            <p>{{ team.country.name }}</p>
+            <p>Players:</p>
+            <ul class="object-list">
+                {% for player in teamPlayers %}
+                    <li>
+                        <a class="bold object-display" href="{{ path("display_player", {"id": player.id}) }}">
+                            {{ player.name }} {{ player.surname }}
+                        </a>
+                        <span>{{ player.position }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        Currently there is no team with that id
+    {% endif %}
+    </div>
+{% endblock %}
+

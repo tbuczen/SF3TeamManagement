@@ -1,0 +1,25 @@
+{% extends '@App/base.html.twig' %}
+
+{#{% block title %}{{ player.name }} {{ player.surname }}{% endblock %}#}
+
+{% block body %}
+    <div class="center">
+
+    {% if player is not null %}
+        {% set team = player.team %}
+        <div>
+            <h3>{{ player.name }} {{ player.surname }}</h3>
+            <p>{{ team.country.name }}</p>
+            <p>Position : {{ player.position }}</p>
+            <div>
+                <span>Team : </span>
+                <a  href="{{ path("display_team", {"id": team.id}) }}">{{ team.name }}</a>
+            </div>
+
+        </div>
+    {% else %}
+        Currently there is no team with that id
+    {% endif %}
+    </div>
+{% endblock %}
+

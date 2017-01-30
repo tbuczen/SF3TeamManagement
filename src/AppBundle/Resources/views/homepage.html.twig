@@ -7,9 +7,10 @@
         <h1>Welcome in soccer management!</h1>
 
         <div class="search">
-            <label for="search">Search team/player</label>
-            <input id="search" name="search" type="text">
+            <label for="search">Search for a player</label>
+            <input id="search" name="search" type="text" data-url="{{ path("player_search") }}">
             <span class="search-btn"><i class="fa fa-search" aria-hidden="true"></i></span>
+            <div id="searchResult"></div>
         </div>
 
         <p>

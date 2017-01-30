@@ -3,6 +3,29 @@
 {% block title %}Players{% endblock %}
 
 {% block body %}
-    SHOW PLAYERS
+    <div class="center">
+        {% if filters is defined %}
+            <div class="filters">
+
+            </div>
+        {% endif %}
+
+        {% if players is not null %}
+            <ul class="object-list">
+                {% for player in players %}
+                    <li>
+                        <a class="bold object-display" href="{{ path("display_player", {"id": player.id}) }}">
+                            {{ player.team.name }} - {{ player.name }} {{ player.surname }}</a>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <a href="{{ path("edit_player", {"id": player.id}) }}">Modify</a>
+                            <a class="remove" href="{{ path("delete_player", {"id": player.id}) }}"><i class="fa fa-remove"></i></a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            Currently there are no players in database.
+        {% endif %}
+    </div>
 {% endblock %}
 
