@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Country
  *
  * @ORM\Table(name="country")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BaseRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Country
