@@ -2,3 +2,8 @@ services:
     app.player.search:
         class: AppBundle\Service\PlayerSearch
         arguments: [ "@doctrine.orm.entity_manager"]
+    app.form.type.player:
+        class: AppBundle\Form\PlayerType
+        arguments: [ "@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }

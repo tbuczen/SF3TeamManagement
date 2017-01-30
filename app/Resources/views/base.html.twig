@@ -5,6 +5,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}" />
+        <script type="text/javascript" src="{{ asset('bundles/app/js/script.js') }}"></script>
     </head>
     <body>
         <header>
@@ -14,7 +15,6 @@
             {% block body %}{% endblock %}
         </div>
         {% block footer %}{% endblock %}
-        {% block javascripts %}{% endblock %}
         <script>
             !function(e){"use strict";var t=function(t,n,o){function i(e){return d.body?e():void setTimeout(function(){i(e)})}var r,d=e.document,a=d.createElement("link"),l=o||"all";if(n)r=n;else{var f=(d.body||d.getElementsByTagName("head")[0]).childNodes;r=f[f.length-1]}var s=d.styleSheets;a.rel="stylesheet",a.href=t,a.media="only x",i(function(){r.parentNode.insertBefore(a,n?r:r.nextSibling)});var u=function(e){for(var t=a.href,n=s.length;n--;)if(s[n].href===t)return e();setTimeout(function(){u(e)})};return a.addEventListener&&a.addEventListener("load",function(){this.media=l}),a.onloadcssdefined=u,u(function(){a.media!==l&&(a.media=l)}),a};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this),function(e){var t=function(t,n){"use strict";var o=e.document.getElementsByTagName("script")[0],i=e.document.createElement("script");return i.src=t,i.async=!0,o.parentNode.insertBefore(i,o),n&&"function"==typeof n&&(i.onload=n),i};"undefined"!=typeof module?module.exports=t:e.loadJS=t}("undefined"!=typeof global?global:this);
 
@@ -30,7 +30,9 @@
             }
 
             loadCSS("{{ asset('/bundles/app/css/style.css') }}");
-            loadJS("{{ asset('bundles/app/js/script.js') }}");
+            {#loadJS("{{ asset('bundles/app/js/script.js') }}");#}
         </script>
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>

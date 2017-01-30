@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Country;
 use AppBundle\Form\CountryType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -85,6 +86,21 @@ class CountryController extends BaseController
             $request->getSession()->getFlashBag()->add('success', 'Succesfuly deleted.');
         }
         return $this->redirectToRoute("manage_countries");
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function ajaxChangedAction(Request $request){
+        $id = $request->get("id");
+        $data = $this->getDoctrine()->getRepository("AppBundle:Team")->findByCountry($id);
+        $result = [];
+        foreach ($data as $team) {
+            $result[$team->getName()] = $team->getId();
+        }
+
+        return new JsonResponse($result);
     }
 
 }

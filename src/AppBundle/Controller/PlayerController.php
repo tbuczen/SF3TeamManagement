@@ -70,7 +70,7 @@ class PlayerController extends BaseController
     {
         $entity = new Player();
 
-        $form = $this->createEditForm(PlayerType::class, $entity,true);
+        $form = $this->createEditForm(PlayerType::class, $entity, true);
         $form->handleRequest($request);
 
         if ($form->isValid()) {

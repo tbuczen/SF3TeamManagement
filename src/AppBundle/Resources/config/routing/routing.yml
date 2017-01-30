@@ -81,3 +81,7 @@ create_country:
 player_search:
     path:     /player/search
     defaults:  { _controller: AppBundle:Front:search }
+
+country_ajax_changed:
+    path:     /country/changed
+    defaults:  { _controller: AppBundle:Country:ajaxChanged }
