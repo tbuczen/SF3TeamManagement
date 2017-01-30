@@ -47,7 +47,11 @@ body {
         }
 
         #searchResult{
-
+          background-color: ghostwhite;
+          span{
+            padding: 3px 0;
+            display: block;
+          }
         }
       }
     }

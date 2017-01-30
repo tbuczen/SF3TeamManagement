@@ -1,0 +1,30 @@
+{% extends '@App/base.html.twig' %}
+
+
+{% block body %}
+    <div class="center">
+
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('create_country') }}">Add new</a>
+    {% endif %}
+
+    {% if countries is not null %}
+        <ul class="object-list">
+            {% for country in countries %}
+                <li>
+                    <a class="bold object-display">
+                        {{ country.name }} - {{ country.code }}
+                    </a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path("edit_country", {"id": country.id}) }}">Modify</a>
+                        <a class="remove" href="{{ path("delete_country", {"id": country.id}) }}"><i class="fa fa-remove"></i></a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        Currently there are no countries in database.
+    {% endif %}
+    </div>
+{% endblock %}
+

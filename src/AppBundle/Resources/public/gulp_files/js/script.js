@@ -9,7 +9,7 @@ var app = {
             method: 'POST',
             success: function (response) {
                 if (response.error == null) {
-                    app.displaySearch();
+                    app.displaySearch(response.data);
                 }
                 else {
                     console.warn(response.error.msg);
@@ -19,6 +19,17 @@ var app = {
     },
     displaySearch: function(data){
         var resultContainer = $("#searchResult");
+        resultContainer.html("");
+
+        for (i = 0; i < data.length; i++) {
+            var $spanElement = "<span><a href='/player/" + data[i].id + "'>" +
+                data[i].name + " " + data[i].surname +
+
+                "</a></span>";
+            resultContainer.append($spanElement);
+        }
+
+        resultContainer.slideDown(100);
     }
 
 };
@@ -54,4 +65,14 @@ $(document).ready(function () {
         },600);
 
     });
+
+    $('html').on("click",function() {
+        if($("#searchResult").is(":visible"))
+            $("#searchResult").slideUp(100);
+    });
+
+    $("#searchResult").on("click",function(e){
+        e.stopPropagation();
+    });
+
 });

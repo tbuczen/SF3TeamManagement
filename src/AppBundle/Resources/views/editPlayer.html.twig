@@ -1,6 +1,8 @@
 {% extends '@App/base.html.twig' %}
 
+{#{% if player is not null %}#}
 {#{% block title %}{{ player.name }} {{ player.surname }}{% endblock %}#}
+{#{% endif %}#}
 
 {% block body %}
     <div class="center">
@@ -18,7 +20,7 @@
 
         </div>
     {% else %}
-        Currently there is no team with that id
+        Error: Currently there is no player with that id
     {% endif %}
     </div>
 {% endblock %}

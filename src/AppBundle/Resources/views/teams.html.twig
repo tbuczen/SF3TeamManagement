@@ -10,6 +10,10 @@
         </div>
     {% endif %}
 
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path('create_team') }}">Add new</a>
+        {% endif %}
+
     {% if teams is not null %}
         <ul class="object-list">
         {% for team in teams %}

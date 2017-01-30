@@ -5,56 +5,56 @@ homepage:
 #TEAMS
 show_teams:
     path:      /teams
-    defaults:  { _controller: AppBundle:Front:teams }
+    defaults:  { _controller: AppBundle:Team:teams }
 
 display_team:
     path:      /team/{id}
-    defaults:  { _controller: AppBundle:Front:displayTeam }
+    defaults:  { _controller: AppBundle:Team:displayTeam }
     requirements:
         id: '\d+'
 
 edit_team:
     path:      /team/{id}/edit
-    defaults:  { _controller: AppBundle:Front:editTeam }
+    defaults:  { _controller: AppBundle:Team:editTeam }
     requirements:
         id: '\d+'
 
 delete_team:
     path:      /team/{id}/delete
-    defaults:  { _controller: AppBundle:Front:deleteTeam }
+    defaults:  { _controller: AppBundle:Team:deleteTeam }
     requirements:
         id: '\d+'
 
 create_team:
     path:      /team/create
-    defaults:  { _controller: AppBundle:Front:createTeam }
+    defaults:  { _controller: AppBundle:Team:createTeam }
 
 #PLAYERS
 show_players:
     path:      /players
-    defaults:  { _controller: AppBundle:Front:players }
+    defaults:  { _controller: AppBundle:Player:players }
 
 display_player:
     path:      /player/{id}
-    defaults:  { _controller: AppBundle:Front:displayPlayer }
+    defaults:  { _controller: AppBundle:Player:displayPlayer }
     requirements:
         id: '\d+'
 
 edit_player:
     path:      /player/{id}/edit
-    defaults:  { _controller: AppBundle:Front:editPlayer }
+    defaults:  { _controller: AppBundle:Player:editPlayer }
     requirements:
         id: '\d+'
 
 delete_player:
     path:      /player/{id}/delete
-    defaults:  { _controller: AppBundle:Front:deletePlayer }
+    defaults:  { _controller: AppBundle:Player:deletePlayer }
     requirements:
         id: '\d+'
 
 create_player:
     path:      /player/create
-    defaults:  { _controller: AppBundle:Front:createPlayer }
+    defaults:  { _controller: AppBundle:Player:createPlayer }
 
 #COUNTRIES
 manage_countries:
@@ -72,6 +72,10 @@ delete_country:
     defaults:  { _controller: AppBundle:Front:deleteCountry }
     requirements:
         id: '\d+'
+
+create_country:
+    path:     /country/create
+    defaults:  { _controller: AppBundle:Front:createCountry }
 
 #SEARCH
 player_search:

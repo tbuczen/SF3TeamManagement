@@ -208,5 +208,10 @@ class Player
         $this->slug = $slug;
     }
 
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
+
 }
 

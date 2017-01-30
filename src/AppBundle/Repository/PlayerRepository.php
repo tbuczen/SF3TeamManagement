@@ -39,10 +39,27 @@ class PlayerRepository extends EntityRepository
     }
 
     /**
-     * @param string $queryString
+     * @param string[] $queryParts
+     * @return array
      */
-    public function searchByAnything($queryString){
+    public function searchByAnything($queryParts)
+    {
+        $fullResults = [];
+        foreach ($queryParts as $needle) {
+            $query = $this->createQueryBuilder('p')
+                ->select('p,t,c')
+                ->innerJoin('p.team', 't')
+                ->innerJoin('t.country', 'c')
+                ->where("p.slug LIKE :needle ")
+                ->orWhere("c.name LIKE :needle")
+                ->orWhere("t.name LIKE :needle")
+                ->setParameter('needle', '%' . $needle . '%')
+                ->orderBy("p.name", "ASC");
 
+            $fullResults[] = $query->getQuery()->getArrayResult();
+        }
+
+        return $fullResults;
     }
 
 }
