@@ -1,18 +1,14 @@
 {% extends '@App/base.html.twig' %}
-
-{% block title %}{{ team.country }} {{ team.name }}{% endblock %}
-
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% block body %}
     <div class="center">
+        {{ form_start(form) }}
 
-    {% if team is not null %}
-        <div>
-            <h3>{{ team.name }}</h3>
-            <p>{{ team.country.name }}</p>
-        </div>
-    {% else %}
-        Currently there is no team with that id
-    {% endif %}
+        {{ form_row(form.name) }}
+        {{ form_row(form.country) }}
+
+        {{ form_errors(form) }}
+
+        {{ form_end(form) }}
     </div>
 {% endblock %}
-

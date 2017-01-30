@@ -2,9 +2,7 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-
-class TeamRepository extends EntityRepository
+class TeamRepository extends BaseRepository
 {
 
     public function getOrderedByCountries(){

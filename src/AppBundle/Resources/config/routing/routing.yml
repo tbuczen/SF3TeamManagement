@@ -59,23 +59,23 @@ create_player:
 #COUNTRIES
 manage_countries:
     path:     /countries
-    defaults:  { _controller: AppBundle:Front:countries }
+    defaults:  { _controller: AppBundle:Country:countries }
 
 edit_country:
     path:     /country/{id}/edit
-    defaults:  { _controller: AppBundle:Front:editCountry }
+    defaults:  { _controller: AppBundle:Country:editCountry }
     requirements:
         id: '\d+'
 
 delete_country:
     path:     /country/{id}/delete
-    defaults:  { _controller: AppBundle:Front:deleteCountry }
+    defaults:  { _controller: AppBundle:Country:deleteCountry }
     requirements:
         id: '\d+'
 
 create_country:
     path:     /country/create
-    defaults:  { _controller: AppBundle:Front:createCountry }
+    defaults:  { _controller: AppBundle:Country:createCountry }
 
 #SEARCH
 player_search:

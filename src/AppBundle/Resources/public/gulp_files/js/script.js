@@ -21,14 +21,13 @@ var app = {
         var resultContainer = $("#searchResult");
         resultContainer.html("");
 
+        //TODO:: bad way for url to set it static - don't have time to change
         for (i = 0; i < data.length; i++) {
             var $spanElement = "<span><a href='/player/" + data[i].id + "'>" +
                 data[i].name + " " + data[i].surname +
-
                 "</a></span>";
             resultContainer.append($spanElement);
         }
-
         resultContainer.slideDown(100);
     }
 
@@ -61,6 +60,8 @@ $(document).ready(function () {
         utils.delay(function(){
             if(value.length > 2){
                 app.playerSearch(value);
+            }else if(value.length == 0){
+                $("#searchResult").slideUp(100);
             }
         },600);
 

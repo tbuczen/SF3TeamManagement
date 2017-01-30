@@ -2,13 +2,14 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Entity\Player;
+use AppBundle\Form\PlayerType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-class PlayerController extends Controller
+class PlayerController extends BaseController
 {
 
     /**
@@ -44,11 +45,19 @@ class PlayerController extends Controller
      */
     public function editPlayerAction(Request $request, $id)
     {
-        $form = null;
-        $player = $this->getDoctrine()->getRepository("AppBundle:Player")->find($id);
+        $entity = $this->getDoctrine()->getRepository("AppBundle:Player")->find($id);
+
+        $form = $this->createEditForm(PlayerType::class, $entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+        }
         return $this->render('@App/editPlayer.html.twig', [
-            "player" => $player,
-            "form" => $form,
+            "player" => $entity,
+            "form" => $form->createView(),
         ]);
     }
 
@@ -59,9 +68,18 @@ class PlayerController extends Controller
      */
     public function createPlayerAction(Request $request)
     {
-        $form = null;
+        $entity = new Player();
+
+        $form = $this->createEditForm(PlayerType::class, $entity,true);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+        }
         return $this->render('@App/editPlayer.html.twig', [
-            "form" => $form,
+            "form" => $form->createView(),
         ]);
     }
 
@@ -69,12 +87,17 @@ class PlayerController extends Controller
      * @param Request $request
      * @param int $id
      * @Security("has_role('ROLE_ADMIN')")
-     * @return Response
+     * @return Response|null
      */
     public function deletePlayerAction(Request $request, $id)
     {
-        return $this->render('@App/editPlayer.html.twig', [
-        ]);
+        $deleted = $this->getDoctrine()->getRepository("AppBundle:Player")->delete($id);
+        if(!$deleted) {
+            $request->getSession()->getFlashBag()->add('error', 'Failed to delete.');
+        } else {
+            $request->getSession()->getFlashBag()->add('success', 'Succesfuly deleted.');
+        }
+        return $this->redirectToRoute("show_players");
     }
 
 }

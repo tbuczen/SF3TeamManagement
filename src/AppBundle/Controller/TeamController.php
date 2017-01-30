@@ -2,12 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\TeamType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class TeamController extends Controller
+class TeamController extends BaseController
 {
     /**
      * @param Request $request
@@ -44,11 +45,11 @@ class TeamController extends Controller
      */
     public function editTeamAction(Request $request, $id)
     {
-        $form = null;
         $team = $this->getDoctrine()->getRepository("AppBundle:Team")->find($id);
+        $form = $this->createEditForm(TeamType::class, $team);
         return $this->render('@App/editTeam.html.twig', [
             "team" => $team,
-            "form" => $form,
+            "form" => $form->createView(),
         ]);
     }
 
@@ -59,9 +60,9 @@ class TeamController extends Controller
      */
     public function createTeamAction(Request $request)
     {
-        $form = null;
+        $form = $this->createEditForm(TeamType::class,null,true);
         return $this->render('@App/editTeam.html.twig', [
-            "form" => $form,
+            "form" => $form->createView(),
         ]);
     }
 
@@ -73,7 +74,13 @@ class TeamController extends Controller
      */
     public function deleteTeamAction(Request $request, $id)
     {
-        return $this->render('@App/editTeam.html.twig', []);
+        $deleted = $this->getDoctrine()->getRepository("AppBundle:Team")->delete($id);
+        if(!$deleted) {
+            $request->getSession()->getFlashBag()->add('error', 'Failed to delete.');
+        } else {
+            $request->getSession()->getFlashBag()->add('success', 'Succesfuly deleted.');
+        }
+        return $this->redirectToRoute("show_teams");
     }
 
 }

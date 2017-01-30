@@ -3,9 +3,8 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Player;
-use Doctrine\ORM\EntityRepository;
 
-class PlayerRepository extends EntityRepository
+class PlayerRepository extends BaseRepository
 {
 
     /**

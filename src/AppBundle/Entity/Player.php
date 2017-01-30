@@ -213,5 +213,20 @@ class Player
         return (string) $this->id;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function updateSlug()
+    {
+        $toSlug = $this->name . " " . $this->surname;
+        $slug = Sluggable\Urlizer::urlize($toSlug, '');
+        $this->setSlug($slug);
+    }
+
+    static function getPossiblePositions() {
+        $oClass = new \ReflectionClass(__CLASS__);
+        return $oClass->getConstants();
+    }
+
 }
 
