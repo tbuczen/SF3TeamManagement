@@ -31,7 +31,6 @@ composer install
 4. Login data
 
 * Login: admin
-* Mail: admin@mia.be
 * Password: s3cret
 
 
