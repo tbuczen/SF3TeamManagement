@@ -1,17 +1,21 @@
-mia
+SF3
 ===
 
 A Symfony project created on January 28, 2017, 12:34 pm.
 
 Project Setup
 
-1. Database and mysql user creation
+0. Database and mysql user creation
 
 ```mysql
-CREATE USER 'mia'@'%' IDENTIFIED WITH mysql_native_password AS 'devpass';
-GRANT USAGE ON *.* TO 'mia'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-CREATE DATABASE IF NOT EXISTS `mia`;GRANT ALL PRIVILEGES ON `mia`.* TO 'mia'@'%';
-GRANT ALL PRIVILEGES ON `mia\_%`.* TO 'mia'@'%';
+CREATE USER 'user'@'%' IDENTIFIED WITH mysql_native_password AS 'password';
+GRANT USAGE ON *.* TO 'user'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+CREATE DATABASE IF NOT EXISTS `sf3`;GRANT ALL PRIVILEGES ON `sf3`.* TO 'user'@'%';
+GRANT ALL PRIVILEGES ON `sf3\_%`.* TO 'user'@'%';
+```
+1. Composer
+```shell
+composer install 
 ```
 
 2. Load Schema
