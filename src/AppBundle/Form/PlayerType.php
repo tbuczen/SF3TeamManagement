@@ -4,7 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Country;
 use AppBundle\Entity\Player;
-use AppBundle\Entity\Team;
+use AppBundle\Form\DataTransformer\TeamToNumberTransformer;
 use AppBundle\Repository\TeamRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -34,8 +34,12 @@ class PlayerType extends AbstractType
         $builder->add('position',ChoiceType::class, array(
             'choices' => Player::getPossiblePositions(),
         ));
-
+        $builder->add('team',  EntityType::class, [
+            'class'       => 'AppBundle:Team',
+            'choice_label' => 'name',
+        ]);
         $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
+        $builder->get('team')->addModelTransformer(new TeamToNumberTransformer($this->em));
     }
 
     protected function addElements(FormInterface $form, Country $country = null) {
@@ -62,8 +66,11 @@ class PlayerType extends AbstractType
             },
             'choice_label' => 'name',
         );
+        $data =  $this->em->getRepository('AppBundle:Team')->findByCountry($country->getId());
 
-        $form->add('team',  EntityType::class, $teamOptions);
+//        $form->get('team')->setData($data);
+//        $form->add(
+//            'team',  EntityType::class, $teamOptions);
 
     }
 

@@ -1,5 +1,10 @@
 {% extends '@App/base.html.twig' %}
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block stylesheets %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     <div class="center">
         {{ form_start(form) }}
@@ -20,7 +25,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $("#player_country").on("change",function(){
+            $("#player_country").on("change load",function(){
                 var val = $(this).val();
                 $.ajax({
                     type: "POST",
@@ -29,7 +34,7 @@
                         // Remove current options
                         $('#player_team').html('');
                         $.each(data, function(k, v) {
-                            $('#player_team').append('<option value="' + v + '">' + k + '</option>');
+                            $('#player_team').append('<option value='+ v + '>' + k + '</option>');
                         });
                     }
                 });

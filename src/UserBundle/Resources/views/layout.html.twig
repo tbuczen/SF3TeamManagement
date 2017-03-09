@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
 {% block header %}
     <nav>
         <a href="{{ path('homepage') }}">Homepage</a>
@@ -20,6 +24,7 @@
 
 <div>
     {% block fos_user_content %}
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
     {% endblock fos_user_content %}
 </div>
 

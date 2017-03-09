@@ -54,6 +54,9 @@ class PlayerController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Succesfuly updated user.');
+            return $this->redirectToRoute("show_players");
         }
         return $this->render('@App/editPlayer.html.twig', [
             "player" => $entity,
@@ -77,6 +80,9 @@ class PlayerController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Succesfuly created user.');
+            return $this->redirectToRoute("show_players");
         }
         return $this->render('@App/editPlayer.html.twig', [
             "form" => $form->createView(),

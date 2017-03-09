@@ -95,11 +95,11 @@ nav {
     line-height: 40px;
     height: 40px;
     border-bottom: 1px solid #888;
-    text-decoration: none;
-    color: #fff;
+    color: #fff !important;
     display: block;
     transition: .3s background-color;
-
+    text-decoration: none !important;
+    cursor: pointer;
     i{
       font:normal normal normal 14px/2 FontAwesome !important;
       font-size: inherit !important;
@@ -109,7 +109,7 @@ nav {
   }
 
   a:hover {
-    background-color: #005f5f;
+    background-color: #005f5f !important;
   }
 
   a.active {
@@ -125,7 +125,7 @@ nav {
     border-bottom: none;
     height: 50px;
     line-height: 50px;
-    font-size: 1.4em;
+    font-size: 1.61em !important;
     display: inline-flex;
     margin-right: -4px;
     padding: 0 10px;

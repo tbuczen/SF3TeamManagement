@@ -41,7 +41,13 @@ class Player
 
     /**
      * @var string
-     *
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 45,
+     *      minMessage = "Country name must be at least {{ limit }} characters long",
+     *      maxMessage = "Country name cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="surname", type="string", length=45, nullable=true)
      */
     private $surname;

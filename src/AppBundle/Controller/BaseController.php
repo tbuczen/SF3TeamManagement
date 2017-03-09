@@ -8,7 +8,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class BaseController extends Controller
 {
     /**
-     * @return \Symfony\Component\Form\Form The form
+     * @param string $formType
+     * @param null $data
+     * @param bool $create
+     * @return \Symfony\Component\Form\Form
      */
     public function createEditForm($formType,$data = null,$create = false)
     {
